@@ -11,6 +11,8 @@
     state: present
 
 - name: Activate Remi-Repos
-  command: "yum-config-manager --enable remi"
+  yum_repository:
+    name: remi
+    enabled: yes
 
 ...
