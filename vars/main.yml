@@ -11,7 +11,7 @@ php_remirepo_key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
 php_remirepo: http://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm
 
 # System
-php_socket_dir: /run/php
+php_socket_dir: /var/run/php
 php_tmpfilesd_path: /usr/lib/tmpfiles.d/php.conf
 
 # Config Files
