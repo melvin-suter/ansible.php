@@ -46,6 +46,13 @@
   shell: systemd-tmpfiles --create
   when: tmpfile_task.changed
 
+- name: check on run folder
+  file:
+    state: directory
+    path: "{{ php_socket_dir }}"
+    owner: "{{ php_user }}"
+    group: "{{ php_group }}"
+    mode: 0755
 
 - name: Enable & Start php fpm services
   systemd:
