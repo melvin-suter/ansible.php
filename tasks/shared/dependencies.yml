@@ -1,0 +1,16 @@
+---
+
+- name: import GPG keys
+  rpm_key:
+    key: "{{ php_remirepo_key }}"
+    state: present
+
+- name: install remi repo
+  yum:
+    name: "{{ php_remirepo }}"
+    state: present
+
+- name: Activate Remi-Repos
+  command: "yum-config-manager --enable remi"
+
+...

@@ -1,0 +1,53 @@
+---
+
+- name: Generate php ini files
+  template:
+    src: templates/php.ini/{{ item }}_php.ini.j2
+    dest: "{{ php_conf_ini_path | replace('{PHP_VERSION}',item) }}"
+    owner: root
+    group: root
+    mode: 0750
+  with_items:
+    - "{{ php_versions }}"
+  notify: restart php{{ item }}
+
+- name: Generate php fpm files
+  template:
+    src: templates/php-fpm.conf/{{ item }}_php-fpm.conf.j2
+    dest: "{{ php_conf_fpm_path | replace('{PHP_VERSION}',item) }}"
+    owner: root
+    group: root
+    mode: 0750
+  with_items:
+    - "{{ php_versions }}"
+  notify: restart php{{ item }}
+    
+- name: Generate php fpm www files
+  template:
+    src: templates/www.conf/{{ item }}_www.conf.j2
+    dest: "{{ php_conf_fpm_www_path | replace('{PHP_VERSION}',item) }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - "{{ php_versions }}"
+  notify: restart php{{ item }}
+
+- name: Generate php tmpfiles.d
+  template:
+    src: templates/tmpfilesd_php.conf.j2
+    dest: "{{ php_tmpfilesd_path }}"
+    owner: root
+    group: root
+    mode: 0750
+  notify: reload tmpfiles
+
+- name: Enable & Start php fpm services
+  systemd:
+      name: "php{{ item }}-php-fpm"
+      enabled: true
+  with_items:
+    - "{{ php_versions }}"
+  notify: restart php{{ item }}
+
+...

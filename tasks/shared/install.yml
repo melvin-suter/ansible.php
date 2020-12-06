@@ -1,0 +1,12 @@
+---
+
+- name: Install PHP Packages
+  yum:
+    name: "php{{ item[0] }}-{{ item[1] }}"
+    state: present
+  with_nested:
+    - "{{ php_versions }}"
+    - "{{ php_packages }}"
+  notify: restart php{{ item[0] }}
+
+...

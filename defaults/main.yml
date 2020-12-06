@@ -1,9 +1,42 @@
 ---
-# Here belong all variables, that can be changed by a vars-file,
-# a playbook or a include.
 
-run_systemcheck: yes
-install_openvmtools: yes
-additional_open_ports: []
+php_versions:
+- 73
+- 80
+
+php_packages:
+- php
+- php-cli
+- php-fpm
+- php-mysqlnd
+- php-pdo
+- php-gd
+- php-pecl-zip
+- php-yaml
+- php-json
+- php-mbstring
+- php-xml
+- php-ldap
+
+php_selinux: yes
+
+php_max_execution_time: 3600
+php_memory_limit: 512M
+php_display_errors: no
+php_upload_max_filesize: 4G
+php_post_max_size: "{{ php_upload_max_filesize }}"
+php_max_file_uploads: 20
+php_default_socket_timeout: 60
+
+php_user: nginx
+php_group: nginx
+
+php_pm_type: static
+php_pm_max_children: 50
+php_pm_start_servers: 5
+php_pm_min_spare_servers: 5
+php_pm_max_spare_servers: 35
+
+
 
 ...

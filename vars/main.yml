@@ -1,23 +1,22 @@
 ---
-# Here belong all variables, that can be changed by a vars-file,
-# a playbook or a include.
-
-# Systemcheck
-systemcheck_physical_memory: 2048 # In MB
-systemcheck_swap_memory: 1024 # In MB
-systemcheck_disk: "{{ 20 * 1073741824‬ }}" # in bytes ; 20G
-systemcheck_cpus: 2
-
 # Role
-role_include_files: [] # add for example requirements.yml
+role_include_files: # add for example requirements.yml
+- dependencies.yml
+- install.yml
+- config.yml
+- selinux.yml
 
-# Firewall
-role_ports:
-- port: 22
-  protocol: tcp
-- port: 80
-  protocol: tcp
-- port: 443
-  protocol: tcp
+# Packages
+php_remirepo_key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
+php_remirepo: http://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm
+
+# System
+php_socket_dir: /run/php
+php_tmpfilesd_path: /usr/lib/tmpfiles.d/php.conf
+
+# Config Files
+php_conf_ini_path: /etc/opt/remi/php{PHP_VERSION}/php.ini
+php_conf_fpm_path: /etc/opt/remi/php{PHP_VERSION}/php-fpm.conf
+php_conf_fpm_www_path: /etc/opt/remi/php{PHP_VERSION}/php-fpm.d/www.conf
 
 ...

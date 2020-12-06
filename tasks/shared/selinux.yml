@@ -1,0 +1,18 @@
+---
+
+
+- block:
+
+  - name: set fcontext for {{ php_socket_dir }}
+    community.general.sefcontext:
+      target: "{{ php_socket_dir }}(/.*)?"
+      setype: httpd_var_run_t
+      state: present
+
+  - name: apply fcontext to {{ php_socket_dir }}
+    ansible.builtin.command: restorecon -irv {{ php_socket_dir }}
+
+  when: php_selinux
+
+
+...

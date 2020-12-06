@@ -3,14 +3,27 @@
 # config-file loads, etc. that will be started
 # if a change on a task was made
 
-- name: restart nginx
+- name: restart php70
   service:
-    name: nginx
+    name: php70-php-fpm
     state: restarted
 
-- name: restart iptables
+- name: restart php72
   service:
-    name: iptables
+    name: php72-php-fpm
     state: restarted
+
+- name: restart php73
+  service:
+    name: php73-php-fpm
+    state: restarted
+
+- name: restart php80
+  service:
+    name: php80-php-fpm
+    state: restarted
+
+- name: reload tmpfiles
+  shell: systemd-tmpfiles --create
 
 ...
