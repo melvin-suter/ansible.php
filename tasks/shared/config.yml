@@ -40,7 +40,12 @@
     owner: root
     group: root
     mode: 0750
-  notify: reload tmpfiles
+  register: tmpfile_task
+  
+- name: reload tmpfiles
+  shell: systemd-tmpfiles --create
+  when: tmpfile_task.changed
+
 
 - name: Enable & Start php fpm services
   systemd:

@@ -23,7 +23,4 @@
     name: php80-php-fpm
     state: restarted
 
-- name: reload tmpfiles
-  shell: systemd-tmpfiles --create
-
 ...
