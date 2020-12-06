@@ -46,6 +46,7 @@
   systemd:
       name: "php{{ item }}-php-fpm"
       enabled: true
+      state: started
   with_items:
     - "{{ php_versions }}"
   notify: restart php{{ item }}

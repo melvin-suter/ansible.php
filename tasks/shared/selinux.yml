@@ -10,7 +10,9 @@
       state: present
 
   - name: apply fcontext to {{ php_socket_dir }}
-    command: restorecon -irv {{ php_socket_dir }}
+    shell: restorecon -irv {{ php_socket_dir }}
+    register: restorecon_res
+    changed_when: restorecon_res.stdout != ""
 
   when: php_selinux
 
