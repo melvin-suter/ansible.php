@@ -53,7 +53,7 @@
     owner: "{{ php_user }}"
     group: "{{ php_group }}"
     mode: 0755
-
+    
 - name: Enable & Start php fpm services
   systemd:
       name: "php{{ item }}-php-fpm"
@@ -62,5 +62,15 @@
   with_items:
     - "{{ php_versions }}"
   notify: restart php{{ item }}
+
+- name: check on session folders
+  file:
+    state: directory
+    path: "/var/opt/remi/php{{ item }}/lib/php/session"
+    owner: "{{ php_user }}"
+    group: "{{ php_group }}"
+    mode: 0755
+  with_items:
+    - "{{ php_versions }}"
 
 ...
