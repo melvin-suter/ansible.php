@@ -122,6 +122,7 @@
 ;   Default Value: -1 (Unlimited)
 ;   Development Value: 60 (60 seconds)
 ;   Production Value: 60 (60 seconds)
+max_input_time = {{ php_max_input_time }}
 
 ; output_buffering
 ;   Default Value: Off
@@ -900,6 +901,7 @@ cli_server.color = On
 ; Defines the default timezone used by the date functions
 ; http://php.net/date.timezone
 ;date.timezone =
+date.timezone = "{{ php_timezone }}"
 
 ; http://php.net/date.default-latitude
 ;date.default_latitude = 31.7667

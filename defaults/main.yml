@@ -27,6 +27,8 @@ php_upload_max_filesize: 4G
 php_post_max_size: "{{ php_upload_max_filesize }}"
 php_max_file_uploads: 20
 php_default_socket_timeout: 60
+php_max_input_time: 300
+php_timezone: "Europe/Zurich"
 
 php_user: nginx
 php_group: nginx
