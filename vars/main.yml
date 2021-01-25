@@ -1,11 +1,4 @@
 ---
-# Role
-role_include_files: # add for example requirements.yml
-- dependencies.yml
-- install.yml
-- config.yml
-- selinux.yml
-
 # Packages
 php_remirepo_key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
 php_remirepo: http://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm
