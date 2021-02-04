@@ -5,7 +5,7 @@ php_remirepo: http://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distri
 
 # System
 php_socket_dir: /var/run/php
-php_tmpfilesd_path: /usr/lib/tmpfiles.d/php.conf
+php_tmpfilesd_path: /etc/tmpfiles.d/php.conf
 
 # Config Files
 php_conf_ini_path: /etc/opt/remi/php{PHP_VERSION}/php.ini
